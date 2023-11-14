@@ -46,7 +46,9 @@ R: conectando o jumper 2J direto na saida GND do arduino
 
 ETAPA 5
 - Compare o circuito deste experimento com o experimento anterior e identifique as diferenças.
-R:
+R: os leds alternam entre si quem acende
 - Compare o código fonte deste experimento com o experimento anterior e identifique as diferenças.
+R: teremos os dois leds acendendo e apagando de maneira intercalada, mas eles se enocontram os dois ligados por poucos segundos
 - O resultado do aumento de tempo de 1000 para 3000 milissegundos entre ligar o LED verde e o ligar do
 vermelho.
+R: eles ficam mais tempo ligados ao mesmo tempo.
