@@ -105,3 +105,9 @@ R: 1. int tempo = 0;
 32.    delay(tempo); // Aguarda 1000 milésimos de segundo  
 33.    digitalWrite(13, LOW); // Desliga o LED AMARELO
 34. }
+
+ETAPA 7
+- Porque o pino digital 12 é diferente do pino digital 11 PMW? 
+- Mostre o valor da variável i no monitor serial. 
+- Altere o passo para utilizar o valor 1. 
+- Que alterações são necessárias nos blocos para depois de acender no LED no brilho máximo este seja esmaecido ao brilho mínimo no passo 5. 
