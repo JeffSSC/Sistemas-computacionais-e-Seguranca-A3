@@ -253,3 +253,8 @@ digitalWrite(10, 0);
 }
 
 ETAPA 9
+- O que é um LDR?
+- Qual o símbolo do LDR?
+- Como funciona um LDR?
+- Retire a luz do fotoresistor.
+- Exponha o fotoresistor a uma fonte adicional de luz.
