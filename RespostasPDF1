@@ -167,6 +167,31 @@ digitalWrite(13, LOW); // Desliga o LED AMARELO
 
 ETAPA 7
 - Porque o pino digital 12 é diferente do pino digital 11 PMW?
-- Mostre o valor da variável i no monitor serial. 
-- Altere o passo para utilizar o valor 1. 
+O pino 11 simula uma saida analógica através de ondas quadradas que variam de 0v á 5v enquanto o pino 12 é digital e funciona atráves de saltos em valores bem definidos.
+- Mostre o valor da variável i no monitor serial.
+R: O valor da váriavel "i" aumenta 5 a cada 50 milissegundos, sendo seu valor inicial = 0 e seu valor máximo definido pelo codigo = 255.
 - Que alterações são necessárias nos blocos para depois de acender no LED no brilho máximo este seja esmaecido ao brilho mínimo no passo 5. 
+R: Deve se fazer essas modificações adicionando um "if":
+
+// C++ code
+//
+int i = 0;
+
+void setup()
+{
+  pinMode(11, OUTPUT);
+}
+
+void loop()
+{
+  for (i = 0; i <= 255; i += 5) {
+    analogWrite(11, i);
+    delay(50); // Wait for 50 millisecond(s)
+    if (i == 255) {
+      for (i = 255; i >= 0; i -= 5) {
+        analogWrite(11, i);
+        delay(50); // Wait for 50 millisecond(s)
+      }
+    }
+  }
+}
