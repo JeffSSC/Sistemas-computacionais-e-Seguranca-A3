@@ -54,60 +54,119 @@ vermelho.
 R: eles ficam mais tempo ligados ao mesmo tempo.
 
 ETAPA 6
-- Que alterações no código fonte são necessárias para que realizar a simulação de um semáforo de 3 lâmpadas com tempos diferentes para cada LED. Onde o LED do sinal vermelho deve ficar acesso por 3 segundos e apagar em seguida o LED verde deve acender por 2 segundos e apagar e por fim o LED laranja deve ficar acesso 1 segundo e apagar antes de reiniciar tudo novamente.
-R: Deve-se trocar a  delay (tempo) da linha 17 por delay (tempo)*3 e substituir o delay (tempo) da linha 20 por delay (tempo)*2
-- Que alterações são necessárias considerando as alterações anteriores para que o sinal vermelho pisque 3 vezes em intervalo de 500 milissegundos antes de acender o verde. 
-R: Deve-se adicionar a linha de loop: 
- digitalWrite(13, HIGH); // Liga o LED VERMELHO 
- delay(tempo)/2; // Aguarda 500 milésimos de segundo 
- digitalWrite(13, LOW); // Apaga o LED VERMELHO
- delay(tempo)/2; // Aguarda 500 milésimos de segundo 
- digitalWrite(13, HIGH); // Liga o LED VERMELHO 
- delay(tempo)/2; // Aguarda 500 milésimos de segundo 
- digitalWrite(13, LOW); // Apaga o LED VERMELHO
- delay(tempo)/2; // Aguarda 500 milésimos de segundo 
- digitalWrite(13, HIGH); // Liga o LED VERMELHO 
- delay(tempo)/2; // Aguarda 500 milésimos de segundo 
- digitalWrite(13, LOW); // Apaga o LED VERMELHO
-Substituindo a linha 16 e 17.
-- Faça alterações código fonte para que os LEDs acendam e apaguem na sequência vermelho, amarelo e verde e depois verde, amarelo e vermelho. 
-R: 1. int tempo = 0; 
-2.  
-3. void setup() 
-4. { 
-5.    // Porta 13 (LED_BUILTIN) em modo de saída (escrita) 
-6.    pinMode(13, OUTPUT);//LED VERMELHO 
-7.    // Porta 12 em modo de saída (escrita) 
-8.    pinMode(12, OUTPUT); // LED AMARELO 
-9.    // Porta 11 em modo de saída (escrita) 
-10.    pinMode(11, OUTPUT); // LED VERDE 
-11.    tempo = 1000; 
-12. } 
-13.  
-14. void loop() 
-15. { 
-16.    digitalWrite(13, HIGH); // Liga o LED VERMELHO 
-17.    delay(tempo); // Aguarda 1000 milésimos de segundo 
-18.    digitalWrite(13, LOW); // Apaga o LED VERMELHO  
-19.    digitalWrite(12, HIGH); // Liga o LED VERDE 
-20.    delay(tempo); // Aguarda 1000 milésimos de segundo  
-21.    digitalWrite(12, HIGH); // Apaga o LED VERDE 
-22.    digitalWrite(11, HIGH); // Liga o LED AMARELO 
-23.    delay(tempo); // Aguarda 1000 milésimos de segundo  
-24.    digitalWrite(11, LOW); // Desliga o LED AMARELO 
-25.    digitalWrite(12, HIGH); // Liga o LED VERMELHO 
-26.    delay(tempo); // Aguarda 1000 milésimos de segundo 
-27.    digitalWrite(12, LOW); // Apaga o LED VERMELHO  
-28.    digitalWrite(11, HIGH); // Liga o LED VERDE 
-29.    delay(tempo); // Aguarda 1000 milésimos de segundo  
-30.    digitalWrite(11, HIGH); // Apaga o LED VERDE 
-31.    digitalWrite(13, HIGH); // Liga o LED AMARELO 
-32.    delay(tempo); // Aguarda 1000 milésimos de segundo  
-33.    digitalWrite(13, LOW); // Desliga o LED AMARELO
-34. }
+   - Que alterações no código fonte são necessárias para que realizar a simulação de um semáforo de 3 lâmpadas com tempos diferentes para cada LED. Onde o LED do sinal vermelho deve ficar acesso por 3 segundos e apagar em seguida o LED verde deve acender por 2 segundos e apagar e por fim o LED laranja deve ficar acesso 1 segundo e apagar antes de reiniciar tudo novamente.
+
+int tempo = 0;
+int tempo_red = 0;
+int tempo_green = 0;
+
+void setup()
+{
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(13, OUTPUT);//LED VERMELHO
+// Porta 12 em modo de saída (escrita)
+pinMode(12, OUTPUT); // LED AMARELO
+// Porta 11 em modo de saída (escrita)
+pinMode(11, OUTPUT); // LED VERDE
+tempo_red = 3000;
+  tempo_green = 2000;
+  tempo = 1000;
+}
+
+void loop()
+{
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+digitalWrite(11, HIGH); // Liga o LED VERDE
+delay(tempo_green); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Apaga o LED VERDE
+digitalWrite(12, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Desliga o LED AMARELO
+}
+
+   - Que alterações são necessárias considerando as alterações anteriores para que o sinal vermelho pisque 3 vezes em intervalo de 500 milissegundos antes de acender o verde. 
+
+int tempo = 0;
+int tempo_red = 0;
+int tempo_green = 0;
+
+void setup()
+{
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(13, OUTPUT);//LED VERMELHO
+// Porta 12 em modo de saída (escrita)
+pinMode(12, OUTPUT); // LED AMARELO
+// Porta 11 em modo de saída (escrita)
+pinMode(11, OUTPUT); // LED VERDE
+tempo_red = 500;
+  tempo_green = 2000;
+  tempo = 1000;
+}
+
+void loop()
+{
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+  delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+    delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+
+digitalWrite(11, HIGH); // Liga o LED VERDE
+delay(tempo_green); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Apaga o LED VERDE
+digitalWrite(12, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Desliga o LED AMARELO
+}
+
+   - Faça alterações código fonte para que os LEDs acendam e apaguem na sequência vermelho, amarelo e verde e depois verde, amarelo e vermelho. 
+
+int tempo = 0;
+
+void setup()
+{
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(13, OUTPUT);//LED VERMELHO
+// Porta 12 em modo de saída (escrita)
+pinMode(12, OUTPUT); // LED AMARELO
+// Porta 11 em modo de saída (escrita)
+pinMode(11, OUTPUT); // LED VERDE
+  tempo = 1000;
+}
+
+void loop()
+{
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+digitalWrite(12, HIGH); // Liga o LED VERDE
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Apaga o LED VERDE
+digitalWrite(11, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Desliga o LED AMARELO
+  delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, HIGH); // Liga o LED VERMELHO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Apaga o LED VERMELHO
+digitalWrite(12, HIGH); // Liga o LED VERDE
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Apaga o LED VERDE
+digitalWrite(13, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Desliga o LED AMARELO
+}
 
 ETAPA 7
-- Porque o pino digital 12 é diferente do pino digital 11 PMW? 
+- Porque o pino digital 12 é diferente do pino digital 11 PMW?
 - Mostre o valor da variável i no monitor serial. 
 - Altere o passo para utilizar o valor 1. 
 - Que alterações são necessárias nos blocos para depois de acender no LED no brilho máximo este seja esmaecido ao brilho mínimo no passo 5. 
