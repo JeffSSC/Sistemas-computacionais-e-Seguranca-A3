@@ -254,7 +254,14 @@ digitalWrite(10, 0);
 
 ETAPA 9
 - O que é um LDR?
+R: Light Dependent Resistor, é um resistor que varia sua resistencia de acordo com a intensidade da luz que incide sobre ele.
 - Qual o símbolo do LDR?
+R: o simbolo será anexado ao envio desta atividade neste mesmo diretório.
 - Como funciona um LDR?
-- Retire a luz do fotoresistor.
-- Exponha o fotoresistor a uma fonte adicional de luz.
+R: Quanto mais escuro = maior a resistência
+   Quanto mais claro = menor a resistência
+
+ETAPA 10
+- Altere o programa para fazer o inverso, muita luz liga o LED e pouca luz desliga o LED.
+- Faça uma alteração para adicionar um segundo LED ao esquema. Onde somente o primeiro LED deve
+ser ligado na falta de luz e o somente o segundo LED deve ser ligado na falta de luz.
