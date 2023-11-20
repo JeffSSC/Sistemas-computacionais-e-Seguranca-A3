@@ -262,6 +262,37 @@ R: Quanto mais escuro = maior a resistência
    Quanto mais claro = menor a resistência
 
 ETAPA 10
-- Altere o programa para fazer o inverso, muita luz liga o LED e pouca luz desliga o LED.
 - Faça uma alteração para adicionar um segundo LED ao esquema. Onde somente o primeiro LED deve
 ser ligado na falta de luz e o somente o segundo LED deve ser ligado na falta de luz.
+R: 
+// Luminosidade do fotoresistor
+int luminosidade = 0;
+
+void setup()
+{
+// Porta 0 (Analógica) em modo de entrada(leitura) para o fotoresistor
+pinMode(A0, INPUT);
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(LED_BUILTIN, OUTPUT);// LED VERMELHO
+pinMode(12, OUTPUT);
+}
+
+void loop()
+{
+// Leitura do fotoresistor
+luminosidade = analogRead(A0);
+// Avalia a variável
+if (luminosidade < 900) {
+digitalWrite(LED_BUILTIN, HIGH); // Liga o LED VERMELHO
+} else {
+digitalWrite(LED_BUILTIN, LOW); // Desliga o LED VERMELHO
+}
+// Atrase um pouco para melhorar o desempenho da simulação
+if (luminosidade < 900) {
+digitalWrite(12, LOW); // Liga o LED VERMELHO
+} else {
+digitalWrite(12, HIGH); // Desliga o LED VERMELHO
+}
+// Atrase um pouco para melhorar o desempenho da simulação
+delay(10);
+}
