@@ -1,0 +1,298 @@
+ETAPA 1
+- Qual o valor de LOW e HIGH?
+R: LOW é 0 e HIGH é 1
+- Qual o valor de OUTPUT e LED_BUILTIN?
+R: LED_BUILTIN seria o nome que reprenta 13 e o OUTPUT o valor de saída d pinmode selecionado.
+- O resultado de apagar a linha 9?
+R: Ao apagar a linha 9 o led não liga
+- O resultado de mover a linha 9 para o final no bloco de loop()entre as linhas 12 e 13?
+R: Ele começa desligado e demora 1 segundo a mais para ligar em comparação ao codigo anterior.
+
+ETAPA 2
+- Identificar os nomes dos terminais do LED e sua polaridade.
+Anodo: Positivo e Catodo: Negativo
+- Identificar as cores do resistor e sua representação em Ohms.
+RED: 2 RED: 2 BROWN: Multiplicador por 10 Gold: Tolerância de +- 5%
+- O resultado da inversão dos pinos de conexão de LED.
+R: o led nao vai ligar.
+- O resultado da inversão dos pinos de conexão do resistor.
+R: nada vai ocorrer visto que o resistor oferece a mesma resistência em ambas as polaridades.
+- O resultado da permutação do resistor da linha 3 com o jumper na linha 2 na placa de prototipação.
+R: O led funciona normalmente.
+
+ETAPA 3
+- O resultado de mover o LED verde para o circuito do LED vermelho.
+R: Ambos os leds ficaram mais fracos.
+- O resultado de inserir outro LED no circuito do LED vermelho.
+R: O led verde permaneçe com a mesma intensidade enquanto os leds vermelhos diminuem de intensidade.
+- O resultado da alteração do valor da variável tempo para 500 e 100.
+R: com tempo: 500 os leds piscam 2x mais rapido, e com tempo:100 eles piscam 10x mais rápido.
+- O resultado de mover o jumper do pino digital 13 para o pino digital 12.
+R: Os leds não ligam.
+- Se o resultado de mover o jumper do pino digital 13 para o pino digital 12 não acender nenhum LED,
+que alteração no código fonte resolve o problema.
+R: Substituir todos os "LED_BUILTIN" pelo pinmode "12"
+
+ETAPA 4
+- O resultado de inserir outro LED no circuito do LED vermelho e no circuito do LED verde.
+R: Ambos os leds ficaram mais fracos.
+- O resultado da permutação dos jumpers dos pinos 12 e 13.
+R: os leds verde e vermelho trocam de temporização de piscada
+- Remover o jumper preto da linha 30 da placa de prototipação.
+R: apenas o led verde irá ligar
+- Se remover o jumper preto da linha 30 da placa de prototipação resultar em algum problema em acender
+os leds como resolver sem utilizar a mesma solução ligando o jumper a placa Arduino.
+R: conectando o jumper 2J direto na saida GND do arduino
+
+ETAPA 5
+- Compare o circuito deste experimento com o experimento anterior e identifique as diferenças.
+R: os leds alternam entre si quem acende
+- Compare o código fonte deste experimento com o experimento anterior e identifique as diferenças.
+R: teremos os dois leds acendendo e apagando de maneira intercalada, mas eles se enocontram os dois ligados por poucos segundos
+- O resultado do aumento de tempo de 1000 para 3000 milissegundos entre ligar o LED verde e o ligar do
+vermelho.
+R: eles ficam mais tempo ligados ao mesmo tempo.
+
+ETAPA 6
+   - Que alterações no código fonte são necessárias para que realizar a simulação de um semáforo de 3 lâmpadas com tempos diferentes para cada LED. Onde o LED do sinal vermelho deve ficar acesso por 3 segundos e apagar em seguida o LED verde deve acender por 2 segundos e apagar e por fim o LED laranja deve ficar acesso 1 segundo e apagar antes de reiniciar tudo novamente.
+
+int tempo = 0;
+int tempo_red = 0;
+int tempo_green = 0;
+
+void setup()
+{
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(13, OUTPUT);//LED VERMELHO
+// Porta 12 em modo de saída (escrita)
+pinMode(12, OUTPUT); // LED AMARELO
+// Porta 11 em modo de saída (escrita)
+pinMode(11, OUTPUT); // LED VERDE
+tempo_red = 3000;
+  tempo_green = 2000;
+  tempo = 1000;
+}
+
+void loop()
+{
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+digitalWrite(11, HIGH); // Liga o LED VERDE
+delay(tempo_green); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Apaga o LED VERDE
+digitalWrite(12, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Desliga o LED AMARELO
+}
+
+   - Que alterações são necessárias considerando as alterações anteriores para que o sinal vermelho pisque 3 vezes em intervalo de 500 milissegundos antes de acender o verde. 
+
+int tempo = 0;
+int tempo_red = 0;
+int tempo_green = 0;
+
+void setup()
+{
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(13, OUTPUT);//LED VERMELHO
+// Porta 12 em modo de saída (escrita)
+pinMode(12, OUTPUT); // LED AMARELO
+// Porta 11 em modo de saída (escrita)
+pinMode(11, OUTPUT); // LED VERDE
+tempo_red = 500;
+  tempo_green = 2000;
+  tempo = 1000;
+}
+
+void loop()
+{
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+  delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+    delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo_red); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+
+digitalWrite(11, HIGH); // Liga o LED VERDE
+delay(tempo_green); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Apaga o LED VERDE
+digitalWrite(12, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Desliga o LED AMARELO
+}
+
+   - Faça alterações código fonte para que os LEDs acendam e apaguem na sequência vermelho, amarelo e verde e depois verde, amarelo e vermelho. 
+
+int tempo = 0;
+
+void setup()
+{
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(13, OUTPUT);//LED VERMELHO
+// Porta 12 em modo de saída (escrita)
+pinMode(12, OUTPUT); // LED AMARELO
+// Porta 11 em modo de saída (escrita)
+pinMode(11, OUTPUT); // LED VERDE
+  tempo = 1000;
+}
+
+void loop()
+{
+digitalWrite(13, HIGH); // Liga o LED VERMELHO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Apaga o LED VERMELHO
+digitalWrite(12, HIGH); // Liga o LED VERDE
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Apaga o LED VERDE
+digitalWrite(11, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Desliga o LED AMARELO
+  delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, HIGH); // Liga o LED VERMELHO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(11, LOW); // Apaga o LED VERMELHO
+digitalWrite(12, HIGH); // Liga o LED VERDE
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(12, LOW); // Apaga o LED VERDE
+digitalWrite(13, HIGH); // Liga o LED AMARELO
+delay(tempo); // Aguarda 1000 milésimos de segundo
+digitalWrite(13, LOW); // Desliga o LED AMARELO
+}
+
+ETAPA 7
+- Porque o pino digital 12 é diferente do pino digital 11 PMW?
+O pino 11 simula uma saida analógica através de ondas quadradas que variam de 0v á 5v enquanto o pino 12 é digital e funciona atráves de saltos em valores bem definidos.
+- Mostre o valor da variável i no monitor serial.
+R: O valor da váriavel "i" aumenta 5 a cada 50 milissegundos, sendo seu valor inicial = 0 e seu valor máximo definido pelo codigo = 255.
+- Que alterações são necessárias nos blocos para depois de acender no LED no brilho máximo este seja esmaecido ao brilho mínimo no passo 5. 
+R: Deve se fazer essas modificações adicionando um "if":
+
+// C++ code
+//
+int i = 0;
+
+void setup()
+{
+  pinMode(11, OUTPUT);
+}
+
+void loop()
+{
+  for (i = 0; i <= 255; i += 5) {
+    analogWrite(11, i);
+    delay(50); // Wait for 50 millisecond(s)
+    if (i == 255) {
+      for (i = 255; i >= 0; i -= 5) {
+        analogWrite(11, i);
+        delay(50); // Wait for 50 millisecond(s)
+      }
+    }
+  }
+}
+
+ETAPA 8
+- O que significa RGB?
+R: são as inicias das cores Red, Green e Blue.
+- Qual a função de cada conector do LED RGB?
+R: O cátodo recebe o polo negativo da rede e os demais conectores determinam as cores que serão acesas dentro do led.
+- O LED RGB possui 3 LEDs em seu interior, e estes podem ser ligados de forma independente. Então
+mudando o brilho desses leds, podemos obter muitas outras cores.
+ - Exiba a cor amarela na sequência de cores.
+ - Inclua na sequência anterior a cor ciana.
+ - Inclua na sequência anterior a cor magenta.
+R: Será realizado essas modificações no código para que essa sequência seja adicionada:
+
+void setup()
+{
+ //Porta 11 em modo de saída(escrita).
+ pinMode(11, OUTPUT); // Vermelho
+ //Porta 10 em modo de saída(escrita).
+ pinMode(10, OUTPUT); // Azul
+ //Porta 9 em modo de saída(escrita).
+ pinMode(9, OUTPUT); // Verde
+}
+
+void loop()
+{
+// Escrevemos 255 no pino digital 11
+digitalWrite(11, 255);
+// Aguardamos 1000 milésimos de segundo
+delay(1000);
+//Escrevemos 0 no pino digital 11
+digitalWrite(11, 0);
+// Aguardamos 1000 milésimos de segundo
+delay(1000);
+// Escrevemos 255 no pino digital 10
+digitalWrite(10, 255);
+// Aguardamos 1000 milésimos de segundo
+delay(1000);
+//Escrevemos 0 no pino digital 10
+digitalWrite(10, 0);
+// Aguardamos 1000 milésimos de segundo
+delay(1000);
+// Escrevemos 255 no pino digital 9
+digitalWrite(9, 255);
+// Aguardamos 1000 milésimos de segundo
+delay(1000);
+digitalWrite(11, 255);
+delay(1000);
+digitalWrite(11, 0);
+digitalWrite(10, 255);
+delay(1000);
+digitalWrite(9, 0);
+digitalWrite(11, 255);
+delay(1000);
+digitalWrite(11, 0);
+digitalWrite(10, 0);
+}
+
+ETAPA 9
+- O que é um LDR?
+R: Light Dependent Resistor, é um resistor que varia sua resistencia de acordo com a intensidade da luz que incide sobre ele.
+- Qual o símbolo do LDR?
+R: o simbolo será anexado ao envio desta atividade neste mesmo diretório.
+- Como funciona um LDR?
+R: Quanto mais escuro = maior a resistência
+   Quanto mais claro = menor a resistência
+
+ETAPA 10
+- Faça uma alteração para adicionar um segundo LED ao esquema. Onde somente o primeiro LED deve
+ser ligado na falta de luz e o somente o segundo LED deve ser ligado na falta de luz.
+R: 
+// Luminosidade do fotoresistor
+int luminosidade = 0;
+
+void setup()
+{
+// Porta 0 (Analógica) em modo de entrada(leitura) para o fotoresistor
+pinMode(A0, INPUT);
+// Porta 13 (LED_BUILTIN) em modo de saída (escrita)
+pinMode(LED_BUILTIN, OUTPUT);// LED VERMELHO
+pinMode(12, OUTPUT);
+}
+
+void loop()
+{
+// Leitura do fotoresistor
+luminosidade = analogRead(A0);
+// Avalia a variável
+if (luminosidade < 900) {
+digitalWrite(LED_BUILTIN, HIGH); // Liga o LED VERMELHO
+} else {
+digitalWrite(LED_BUILTIN, LOW); // Desliga o LED VERMELHO
+}
+// Atrase um pouco para melhorar o desempenho da simulação
+if (luminosidade < 900) {
+digitalWrite(12, LOW); // Liga o LED VERMELHO
+} else {
+digitalWrite(12, HIGH); // Desliga o LED VERMELHO
+}
+// Atrase um pouco para melhorar o desempenho da simulação
+delay(10);
+}
